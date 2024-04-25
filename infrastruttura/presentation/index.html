@@ -1,0 +1,79 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="css/index_style.css">
+    </head>
+
+    <body>
+        <div id="headerPagina"></div>
+
+        <script>
+            verificaLogin();
+            
+            function verificaLogin()
+            {
+                const xhttp = new XMLHttpRequest();
+                xhttp.onload = function() {
+                    var res = xhttp.responseText;
+                    var j = JSON.parse(res);
+                    var html = "";
+                    if(!j.autenticato)
+                        html = html + "<button id='btnLogin' onclick='btnLogin()''>Login</button>";
+                    else
+                        html = html + "<span id='username'>Benvenuto " + j.userName + "</span>";
+                    var headerPagina = document.getElementById("headerPagina");
+                    html = html.replace(/'/g, '"');
+                    headerPagina.innerHTML = html;
+                }
+                xhttp.open("POST", "http://192.168.8.103/quintaf/ulivi/prenotazione-concerto/verifica_login.php", true);
+                xhttp.send();
+            }
+
+        </script>
+
+        <h1 id='titoloPagina'>Lista Band</h1>
+        <div id='listaBand'></div>
+        <div id='caricamento'></div>
+
+        <script>
+
+            var indicatoreCaricamento = document.getElementById("caricamento");
+            indicatoreCaricamento.style.display = "block";
+            creaTabella();
+
+            function creaTabella()
+            {
+                const xhttp = new XMLHttpRequest();
+                xhttp.onload = function() {
+                    var res = xhttp.responseText;
+                    var j = JSON.parse(res);
+                    var html = "";
+                    for( i=0; i < j.Result.length; i++)
+                    {
+                        html = html + "<div onClick='bandScelta(" + j.Result[i].id + ")'class='contenitoreBand'>";
+                        html = html + "<div class='contenitoreScritta'>";
+                        html = html + "<h2 class='scrittaBand'>" + j.Result[i].nome + "</h2>";
+                        html = html + "</div>";
+                        html = html + "</div>";
+                    }
+                    var divLista = document.getElementById("listaBand");
+                    html = html.replace(/'/g, '"');
+                    if(divLista.innerHTML != html)
+                        divLista.innerHTML = html;
+                    indicatoreCaricamento.style.display = "none";
+                }
+                xhttp.open("POST", "http://192.168.8.103/quintaf/ulivi/prenotazione-concerto/vis_band.php", true);
+                xhttp.send();
+            }
+
+            function bandScelta(id)
+            {
+                window.location = "http://192.168.8.103/quintaf/ulivi/prenotazione-concerto/band_scelta.php?idBand="+id;
+            }
+
+            function btnLogin()
+            {
+                window.location = "login.html";
+            }
+        </script>
+    </body>
+</html>
