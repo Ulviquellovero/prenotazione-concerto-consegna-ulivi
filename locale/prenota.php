@@ -33,4 +33,5 @@
         'autenticato' => $autenticato,
     ); 
     echo json_encode($res);
+	require_once("var_connclose.php");
 ?>

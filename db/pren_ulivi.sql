@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Apr 19, 2024 alle 17:43
+-- Creato il: Apr 26, 2024 alle 10:30
 -- Versione del server: 10.4.32-MariaDB
 -- Versione PHP: 8.2.12
 
@@ -105,11 +105,11 @@ INSERT INTO `tprenotazione` (`id`, `prenotato`, `nPosto`, `data`, `idUtente`) VA
 (29, 0, 4, 6, NULL),
 (30, 0, 5, 6, NULL),
 (31, 0, 1, 3, NULL),
-(32, 0, 2, 3, NULL),
+(32, 1, 2, 3, '1'),
 (33, 0, 3, 3, NULL),
 (34, 0, 4, 3, NULL),
 (35, 0, 5, 3, NULL),
-(36, 0, 1, 5, NULL),
+(36, 1, 1, 5, '1'),
 (37, 0, 2, 5, NULL),
 (38, 0, 3, 5, NULL),
 (39, 0, 4, 5, NULL),

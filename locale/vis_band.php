@@ -17,4 +17,5 @@
 				"Result" => $resArr,
 				);
 	echo json_encode($risFin);
+	require_once("var_connclose.php");
 ?>

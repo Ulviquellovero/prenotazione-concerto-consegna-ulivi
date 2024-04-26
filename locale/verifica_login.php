@@ -15,4 +15,5 @@
         "userName" => $userName,
     );
     echo json_encode($row);
+	require_once("var_connclose.php");
 ?>
